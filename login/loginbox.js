@@ -26,7 +26,7 @@ document.getElementById('submitSignup').addEventListener('click', function(e){
     e.preventDefault();
     //if(validate_password(passwordsu.value) & validate_field(first_namesu.value) & validate_field(last_namesu.value)){
         //signup
-        email=first_namesu.value+"@spiceeauth.co"
+        email=first_namesu.value.toLowerCase()+"@spiceeauth.co"
         auth.createUserWithEmailAndPassword(email, passwordsu.value)
             .then(function(){
                 var user=auth.currentUser
@@ -88,7 +88,7 @@ document.getElementById('submitLogin').addEventListener('click', function(e){
     e.preventDefault();
     var username = document.getElementById('emailli').value+"@spiceeauth.co";
 var passli = document.getElementById('passwordli').value;
-auth.signInWithEmailAndPassword(username, passli)
+auth.signInWithEmailAndPassword(username.toLowerCase(), passli)
     .then(function(){
         var user = firebase.User.currentUser
         window.location.href='../dashboard'
