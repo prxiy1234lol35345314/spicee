@@ -1,0 +1,11 @@
+#form-wrapper {  
+    background-color: blue;   
+    width: 50%;           /* Set this to your convenience */
+    height: 20%;          /* Set this to your convenience */
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    margin-top: -100px;     /* Half of height */
+    margin-left: -150px;     /* Half of width */
+
+}

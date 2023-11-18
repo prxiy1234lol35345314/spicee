@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #0ca3d9;
+    
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #0462aa;
+    color: white;
+  }
+
+
+
+
+
+
+
+
+  #myProgress1 {
+    width: 15%;
+    background-color: rgb(193, 205, 205);
+    margin-left: 5px;
+
+  }
+  
+  #myBar1 {
+    width: 0%;
+    height: 30px;
+    background-color: rgb(6, 235, 56);
+    
+  }
+
+
+
+
+  #myProgress2 {
+    width: 15%;
+    background-color: rgb(193, 205, 205);
+    margin-left: 5px;
+  }
+  
+  #myBar2 {
+    width: 0%;
+    height: 30px;
+    background-color: rgb(6, 235, 56);
+  }
+
+
+
+
+  #myProgress3 {
+    width: 15%;
+    background-color: rgb(193, 205, 205);
+    margin-left: 5px;
+  }
+
+  #myBar3 {
+    width: 0%;
+    height: 30px;
+    background-color: rgb(6, 235, 56);
+  }
+
+
+
+
+  #myProgress4 {
+    width: 15%;
+    background-color: rgb(193, 205, 205);
+    margin-left: 5px;
+  }
+    
+    #myBar4 {
+    width: 0%;
+    height: 30px;
+    background-color: rgb(6, 235, 56);
+  }
+
+
+
+  #myProgress5 {
+    width: 15%;
+    background-color: rgb(193, 205, 205);
+    margin-left: 5px;
+  }
+  
+  #myBar5 {
+    width: 0%;
+    height: 30px;
+    background-color: rgb(6, 235, 56);
+  }
+
+  .progress{
+    display: flex;
+  flex-wrap: wrap;
+  /* for horizontal aligning of child divs */
+  justify-content: center;
+  /* for vertical aligning */
+  align-items: center;
+  background-color: transparent;
+  }
+  
+
+
+  .progressDiv{
+    margin-top: 2%;
+    height: 20%;
+    background-color: rgba(188, 207, 207, 0.306);
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+
+  .product-box{
+    height: 400px;
+    background-color: rgb(235, 235, 239);
+    width: 275px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    text-align: center;
+    
+  }
+
+  #order{
+    height: 10%;
+    width: 50%;
+    background-color: #329ef0;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20%;
+  }
+
+
+  #terms {
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.5px);
+    -webkit-backdrop-filter: blur(9.5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 50%;
+    text-align: center;
+  }
+
+  #termsbox{
+    border-radius: 16px;
+    margin-left: 15%;
+    height: 50%;
+    width: 70%;
+    text-align: center;
+    border: #0462aa 1px solid;
+    overflow-x: hidden;
+    
+  }
+
+  .ctrlTerms{
+    margin-top: 10px;
+  }
+
+  #cancelOrder{
+    background-color: #e72222;
+    border-radius: 10px;
+    border: none;
+    height: 10%;
+    width: 20%;
+    color: whitesmoke;
+  }
+
+  #agreeTerms{
+    background-color: #22cde7;
+    border-radius: 10px;
+    border: none;
+    height: 10%;
+    width: 30%;
+    color: whitesmoke;
+  }
+
+  #cancelOrder1{
+    background-color: #e72222;
+    border-radius: 10px;
+    border: none;
+    height: 20%;
+    width: 15%;
+    color: whitesmoke;
+  }
+
+  #products{
+    display: flex;
+  }

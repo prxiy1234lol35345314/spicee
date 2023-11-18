@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="shortcut icon" href="../images/favicon.jpg" type="">
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<link rel="stylesheet" type="text/css" href="dash.css" >
+<title>Spicee Dashboard</title>
+  </head>
+
+<body>
+
+    <div class="topnav">
+        <img src="../images/favicon.jpg" height="50" width="70" style="margin-left: 10px; margin-top: 1px;">
+        <div class="navBtn" style="float: right;">
+        <a class="active">Home</a>
+        <a onclick="this.innerHTML='Sign Out';this.addEventListener('click', function(){firebase.auth().signOut()})" id="welcomesignout">Welcome, </a>
+    </div>
+      </div>
+
+      
+
+
+<div class="progressDiv" id="progressDiv">
+    <div class="progress" id="progress">
+      <div id="myProgress1">
+        <div id="myBar1" style="text-align: center; color: white;">
+            Ordered
+        </div>
+      </div>
+      <div id="myProgress2">
+        <div id="myBar2"style="text-align: center; color: white;">
+            Accepted
+        </div>
+      </div>
+      <div id="myProgress3">
+        <div id="myBar3"style="text-align: center; color: white;">
+            Prepared
+        </div>
+      </div>
+      <div id="myProgress4">
+        <div id="myBar4"style="text-align: center; color: white;">
+            Transport
+        </div>
+      </div>
+      <div id="myProgress5">
+        <div id="myBar5"style="text-align: center; color: white;">
+            Delivered
+        </div>
+     </div>
+    </div>
+    <p></p><h3 id="orderbanner">Looks like you don't have any active orders</h3>
+    <p></p><h5 id="orderbanner2">You can place orders directly from the dashboard</h3>
+</div>
+<div id="terms" style="display: none;">
+    <h1 id="termsitem">To place an order of </h1>
+    <h3>You MUST read and agree to the terms of use.</h3>
+    <div id="termsbox">Terms of Use - Spicy Substance:<p></p>
+
+        By purchasing and using the spicy substance provided by me, you acknowledge and agree to the following terms:<p></p>
+        
+        <p></p><strong>Responsibility for Actions:</strong> The spicy substance provided is intended for culinary use only. You take full responsibility for any adverse effects resulting from the misuse or consumption of this product. Please exercise caution and use responsibly.
+        
+        <p></p><strong>Distribution and Consent:</strong> You agree not to distribute the spicy substance to individuals without their explicit consent. It is your responsibility to ensure that anyone who comes into contact with the substance is aware of its nature and willingly accepts it.
+        
+        <p></p><strong>Cancellation Policy:</strong> Orders for the spicy substance can only be canceled by me at any time. You may cancel the order, but only before the preparation of the substance has commenced. Once the substance preparation process has begun, cancellations cannot be accommodated.
+        
+        <p></p><strong>Refund Policy:</strong> No refunds are allowed for for any reason. I do not offer returns or refunds for the spicy substance.
+        
+        <p></p><strong>Refusing Delivery and Wasting Substance:</strong> Refusing delivery of the substance after you have placed an order or wasting it will result in your account being banned.
+        
+        <p></p><strong>Potential Side Effects:</strong> Consuming excessive amounts of spicy substance may lead to various side effects, including but not limited to digestive discomfort, gastrointestinal distress, oral and throat irritation, excessive sweating, respiratory symptoms, skin irritation, sleep disturbances, and aggravation of existing health conditions. It's important to be aware of your tolerance level and consume the substance responsibly.
+        
+        <p></p><strong>Avoiding Eye Contact:</strong> For your safety, refrain from touching your eyes after using the spicy substance, as it may cause irritation.
+        
+        <p></p><strong>Hand Hygiene:</strong> After handling the spicy substance, it is recommended to wash your hands thoroughly to avoid unintentional contact with sensitive areas.
+        
+        <p></p><strong>Legal Compliance:</strong> You agree to use the spicy substance in accordance with all applicable laws and regulations. I assume no liability for any legal consequences resulting from the misuse or improper handling of the spicy substance.
+        
+        <p></p><strong>Disclaimer:</strong> I disclaim all warranties, express or implied, regarding the spicy substance, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. The spicy substance is provided "as is" and may vary in intensity.
+        
+        <p></p>By proceeding with the purchase and use of the spicy substance, you acknowledge that you have read, understood, and agreed to these terms of use. You take full responsibility for any outcome of your actions regarding the spicy substance. Failure to comply with any of these terms may result in your account being banned. I reserve the right to modify these terms at any time. It is your responsibility to review them periodically for updates.
+        
+        <p></p>This Terms of Use agreement was last updated on November 15, 2023.</div>
+        <div class="ctrlTerms">
+        <button id="cancelOrder" onclick="document.getElementById('terms').style.display='none';window.location.reload();">Cancel Order</button>
+        <button id="agreeTerms">Agree and Place Order</button> 
+    </div>
+</div>
+
+
+<div id="products">
+<div class="product-box">
+    <img src="../images/SpicePowder.png" height="40%" width="100%" style="border-radius: 20px;">
+    <h3>Spice Powder</h3>
+    <h5>A spicy powder for all of your foods.<p></p><span style="font-size: 10px;">1 Spoon</span></h5>
+    <button id="order" onclick="order('Spice Powder')">Order Now</button>
+    <p></p><h6><span style="color: red;font-size: 15px;">*</span>Must agree to terms</h7>
+</div>
+
+
+<div class="product-box admin-box" id="admin-box">
+  
+  <h3>Admin Box</h3>
+  <select name="Orders" id="orderChooser"></select>
+<h6 id="orderPosBanner">Order Position</h6>
+<input type="range" min="0" max="100" value="50" id="orderPosSlider">
+<button id="commitOrderChange" >Commit</button>
+</div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="dash.js"></script>
+  
+</body>
