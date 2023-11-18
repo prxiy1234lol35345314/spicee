@@ -53,8 +53,12 @@ firebase.auth().onAuthStateChanged(function(user) {
         var data = snapshot.val()
         document.getElementById('welcomesignout').innerHTML+=data.first_name;
         if(data.waitlist==true){
-          document.write("You are on the waitlist. You must be manually approved by an admin.")
+          document.write("You are on the waitlist. You must be manually approved by an admin.<p/>Your UID: "+user.uid)
         }
+        if(data.suspend==true){
+          document.write("You have been suspended by an admin. <p/>Your UID: "+user.uid+"<p/>Reason: "+data.suspendReason);
+        }
+
 
       })
       //alert(firebase.auth().currentUser)
@@ -395,6 +399,10 @@ var user_ref = database.ref('/'+"")
 
                 
               }
+
+              
+
+
              }, 1);
               })
 
@@ -405,3 +413,71 @@ var user_ref = database.ref('/'+"")
 
 
             })}, 250);
+
+
+            var p = document.createElement('p')
+            document.getElementById('admin-box').appendChild(p)
+            
+            var removeWait = document.createElement('button')
+              document.getElementById('admin-box').appendChild(removeWait)
+              removeWait.id='removewait'
+              removeWait.innerHTML='Remove Waitlist'
+              document.getElementById('removewait').addEventListener('click', function(){
+                var useruid = prompt("User UID: ")
+                
+                try {
+                  database.ref('users/'+useruid).update({
+                    waitlist: false
+                  });
+                } catch (error) {
+                  alert(error)
+                }
+              })
+
+
+
+
+            var p = document.createElement('p')
+            document.getElementById('admin-box').appendChild(p)
+            
+            var suspendusr = document.createElement('button')
+              document.getElementById('admin-box').appendChild(suspendusr)
+              suspendusr.id='suspendusr'
+              suspendusr.innerHTML='Suspend User'
+              document.getElementById('suspendusr').addEventListener('click', function(){
+                var useruid = prompt("User UID: ")
+                
+                try {
+                  database.ref('users/'+useruid).update({
+                    suspend: true,
+                    suspendReason:prompt("Reason:")
+                  });
+                } catch (error) {
+                  alert(error)
+                }
+              })
+
+
+
+              var p = document.createElement('p')
+            document.getElementById('admin-box').appendChild(p)
+            
+            var unsuspendusr = document.createElement('button')
+              document.getElementById('admin-box').appendChild(unsuspendusr)
+              unsuspendusr.id='unsuspendusr'
+              unsuspendusr.innerHTML='Unsuspend User'
+              document.getElementById('unsuspendusr').addEventListener('click', function(){
+                var useruid = prompt("User UID: ")
+                
+                try {
+                  database.ref('users/'+useruid).update({
+                    suspend: false,
+                    suspendReason:""
+                  });
+                } catch (error) {
+                  alert(error)
+                }
+              })
+
+
+              //next, add a box with all the of the names and uids
