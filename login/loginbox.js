@@ -42,12 +42,29 @@ document.getElementById('submitSignup').addEventListener('click', function(e){
                     last_name : document.getElementById('last_namesu').value,
                     full_name : document.getElementById('first_namesu').value+" "+document.getElementById('last_namesu').value,
                     waitlist : true,
-                    admin:false
+                    admin:false,
+                    uid:auth.currentUser.uid
                 }
 
                 database_ref.child('users/'+user.uid).set(user_data)
 
 
+                
+
+                var user_ref2 = database.ref('/'+"")
+                user_ref2.once('value', function(snapshot){
+                var basedata = snapshot.val();
+            
+
+                database.ref('users/'+"").update({
+                    usrs: basedata.users.usrs+1
+                  });
+            
+           
+            database_ref.child('uid/'+[basedata.users.usrs+1]).set({
+                val:auth.currentUser.uid
+            })
+        })
 
 
                 alert('You are on the waitlist! \n Your account will be manually reviewed before you can use it.')
