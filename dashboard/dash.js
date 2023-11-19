@@ -223,97 +223,102 @@ function order(item){
             var user_ref3 = database.ref('orders/'+[i])
           user_ref3.once('value', function(snapshot){
           var data2 = snapshot.val();
-
-            if (data3.orders.num!=0&&data2.customerUID==firebase.auth().currentUser.uid){
-              //alert('You already have an active order. Order aborted.')
-              var user_ref = database.ref('/'+"")
-              user_ref.once('value', function(snapshot){
-                var data = snapshot.val();
-      
-      
-                console.log(data.orders.num)
-                
-
-                  
-                
-                var user_ref1 = database.ref('users/'+firebase.auth().currentUser.uid)
-            user_ref1.on('value', function(snapshot){
-              var data1 = snapshot.val()
-              
-              var today = new Date();
-              var dd = String(today.getDate()).padStart(2, '0');
-              var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-              var yyyy = today.getFullYear();
-              
-              today = mm + '/' + dd + '/' + yyyy;
-            
-      
-                database.ref('orders/'+[data.orders.num]).set({
-                  customerUID: firebase.auth().currentUser.uid,
-                  order: item,
-                  shippment: 5,
-                  ordername: data1.first_name,
-                  date:today,
-                  number:data.orders.num,
-                  mainText:"Looks like you have an order of "+item+" on the way!",
-                  subText:"This order was placed on "+today
-                });
-                
-              })
-              })
-              
-              var conformation = document.createElement('div');
-              document.body.appendChild(conformation);
-              conformation.style="    border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);backdrop-filter: blur(9.5px);-webkit-backdrop-filter: blur(9.5px);border: 1px solid rgba(255, 255, 255, 0.3);position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);height: 30%;width: 50%;text-align: center;"
-              conformation.innerHTML='<h1> Thanks, Order Placed</h1><p/><button id="cancelOrder"style="background-color:green;" onclick="window.location.reload();">Done</button>'
-
-
-
-
+            if(data2.customerUID==firebase.auth().currentUser.uid){
+              if(data2.shippment!=0){
+              alert('You already have an active order. Order aborted.')
             }else{
-              var user_ref = database.ref('/'+"")
-              user_ref.once('value', function(snapshot){
-                var data = snapshot.val();
-      
-      
-                console.log(data.orders.num)
-                
-                database.ref('orders/'+"").update({
-                  num: data.orders.num+1
-                });
-
+              if (data3.orders.num!=0&&data2.customerUID==firebase.auth().currentUser.uid){
+                //alert('You already have an active order. Order aborted.')
+                var user_ref = database.ref('/'+"")
+                user_ref.once('value', function(snapshot){
+                  var data = snapshot.val();
+        
+        
+                  console.log(data.orders.num)
                   
+  
+                    
+                  
+                  var user_ref1 = database.ref('users/'+firebase.auth().currentUser.uid)
+              user_ref1.on('value', function(snapshot){
+                var data1 = snapshot.val()
                 
-                var user_ref1 = database.ref('users/'+firebase.auth().currentUser.uid)
-            user_ref1.on('value', function(snapshot){
-              var data1 = snapshot.val()
-              
-              var today = new Date();
-              var dd = String(today.getDate()).padStart(2, '0');
-              var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-              var yyyy = today.getFullYear();
-              
-              today = mm + '/' + dd + '/' + yyyy;
-            
-      
-                database.ref('orders/'+[data.orders.num+1]).set({
-                  customerUID: firebase.auth().currentUser.uid,
-                  order: item,
-                  shippment: 5,
-                  ordername: data1.first_name,
-                  date:today,
-                  number:data.orders.num+1,
-                  mainText:"Looks like you have an order of "+item+" on the way!",
-                  subText:"This order was placed on "+today
-                });
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
                 
-              })
-              })
+                today = mm + '/' + dd + '/' + yyyy;
               
-              var conformation = document.createElement('div');
-              document.body.appendChild(conformation);
-              conformation.style="    border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);backdrop-filter: blur(9.5px);-webkit-backdrop-filter: blur(9.5px);border: 1px solid rgba(255, 255, 255, 0.3);position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);height: 30%;width: 50%;text-align: center;"
-              conformation.innerHTML='<h1> Thanks, Order Placed</h1><p/><button id="cancelOrder"style="background-color:green;" onclick="window.location.reload();">Done</button>'
+        
+                  database.ref('orders/'+[data.orders.num]).set({
+                    customerUID: firebase.auth().currentUser.uid,
+                    order: item,
+                    shippment: 5,
+                    ordername: data1.first_name,
+                    date:today,
+                    number:data.orders.num,
+                    mainText:"Looks like you have an order of "+item+" on the way!",
+                    subText:"This order was placed on "+today
+                  });
+                  
+                })
+                })
+                
+                var conformation = document.createElement('div');
+                document.body.appendChild(conformation);
+                conformation.style="    border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);backdrop-filter: blur(9.5px);-webkit-backdrop-filter: blur(9.5px);border: 1px solid rgba(255, 255, 255, 0.3);position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);height: 30%;width: 50%;text-align: center;"
+                conformation.innerHTML='<h1> Thanks, Order Placed</h1><p/><button id="cancelOrder"style="background-color:green;" onclick="window.location.reload();">Done</button>'
+  
+  
+  
+  
+              }else{
+                var user_ref = database.ref('/'+"")
+                user_ref.once('value', function(snapshot){
+                  var data = snapshot.val();
+        
+        
+                  console.log(data.orders.num)
+                  
+                  database.ref('orders/'+"").update({
+                    num: data.orders.num+1
+                  });
+  
+                    
+                  
+                  var user_ref1 = database.ref('users/'+firebase.auth().currentUser.uid)
+              user_ref1.on('value', function(snapshot){
+                var data1 = snapshot.val()
+                
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                
+                today = mm + '/' + dd + '/' + yyyy;
+              
+        
+                  database.ref('orders/'+[data.orders.num+1]).set({
+                    customerUID: firebase.auth().currentUser.uid,
+                    order: item,
+                    shippment: 5,
+                    ordername: data1.first_name,
+                    date:today,
+                    number:data.orders.num+1,
+                    mainText:"Looks like you have an order of "+item+" on the way!",
+                    subText:"This order was placed on "+today
+                  });
+                  
+                })
+                })
+                
+                var conformation = document.createElement('div');
+                document.body.appendChild(conformation);
+                conformation.style="    border-radius: 16px;box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);backdrop-filter: blur(9.5px);-webkit-backdrop-filter: blur(9.5px);border: 1px solid rgba(255, 255, 255, 0.3);position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);height: 30%;width: 50%;text-align: center;"
+                conformation.innerHTML='<h1> Thanks, Order Placed</h1><p/><button id="cancelOrder"style="background-color:green;" onclick="window.location.reload();">Done</button>'
+              }
+            }
             }
         })
           }
